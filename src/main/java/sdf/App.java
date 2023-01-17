@@ -7,8 +7,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-import javax.management.openmbean.SimpleType;
-
 /**
  * Hello world!
  */
@@ -103,8 +101,8 @@ public final class App {
          //List of employees
          List<Employee> employees = new ArrayList<Employee>();
          employees.add(new Employee(1, "Andrew", "Yong", 5000));
-         employees.add(new Employee(2, "Bernard", "Lee", 7000));
-         employees.add(new Employee(3, "Catherine", "Lim", 9000));
+         employees.add(new Employee(2, "Andrew", "Lee", 7000));
+         employees.add(new Employee(3, "Catherine", "Lee", 9000));
          employees.add(new Employee(4, "Donnie", "Yen", 11000));
          employees.add(new Employee(5, "Edgar", "Sim", 13000));
 
