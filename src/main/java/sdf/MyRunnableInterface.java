@@ -1,6 +1,6 @@
 package sdf;
 
-@FunctionalInterface
+@FunctionalInterface //annotation of functional interface is optional
 public interface MyRunnableInterface<T> {
 
     //A generic function called process 

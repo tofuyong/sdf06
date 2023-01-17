@@ -84,10 +84,14 @@ public final class App {
             return a + b;
          };
 
+         MyMessageInterface printString = (a) -> {
+            System.out.println(a);
+         };
+
          System.out.println("addOperation: " + addOperation.process(1, 1));
          System.out.println("multiplyOperation: " + multiplyOperation.process(2, 5));
          System.out.println("minusOperation: " + minusOperation.process(10, 2));
          System.out.println("concat: " + concatString.process("Happy", " day!"));
-
+         printString.printMessage("Every day is a day to learn Java");
     }
 }
