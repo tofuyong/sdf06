@@ -1,7 +1,13 @@
 package sdf;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
+
+import javax.management.openmbean.SimpleType;
 
 /**
  * Hello world!
@@ -93,5 +99,50 @@ public final class App {
          System.out.println("minusOperation: " + minusOperation.process(10, 2));
          System.out.println("concat: " + concatString.process("Happy", " day!"));
          printString.printMessage("Every day is a day to learn Java");
+
+         //List of employees
+         List<Employee> employees = new ArrayList<Employee>();
+         employees.add(new Employee(1, "Andrew", "Yong", 5000));
+         employees.add(new Employee(2, "Bernard", "Lee", 7000));
+         employees.add(new Employee(3, "Catherine", "Lim", 9000));
+         employees.add(new Employee(4, "Donnie", "Yen", 11000));
+         employees.add(new Employee(5, "Edgar", "Sim", 13000));
+
+         employees.forEach(emp -> { //forEach is a list function, lambda is applied here as well
+            System.out.println(emp); 
+        });
+
+        //Lambda used in filtering
+        List<Employee> filteredEmployees = employees.stream().filter(emp -> 
+        emp.getLastName().contains("L")).collect(Collectors.toList());
+        System.out.println("Filtered employees with 'L' in surname: ");
+        filteredEmployees.forEach(emp -> {
+            System.out.println(emp);
+        });
+
+        //Lambda and comparator function
+        // employees.sort(Comparator.comparing(e -> e.getFirstName()));
+        // employees.sort(Comparator.comparing(Employee::getFirstName));
+        // employees.sort(Comparator.comparing(Employee::getFirstName).reversed());
+        // System.out.println("Sorted employees: ");
+        // employees.forEach(emp -> {
+        //     System.out.println(emp);
+        // });
+
+        //Alternatively can write as
+        Comparator<Employee> compare = Comparator.comparing(e -> e.getFirstName());
+        employees.sort(compare.reversed());
+
+        // employees.forEach(emp -> {
+        //     System.out.println(emp);
+        // });
+
+        Comparator<Employee> groupByComparator = Comparator.comparing(Employee::getFirstName).thenComparing(Employee::getLastName);
+        employees.sort(groupByComparator);
+        System.out.println("Group by comparator: ");
+        employees.forEach(emp -> {
+            System.out.println(emp);
+        });
+
     }
 }
