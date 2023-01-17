@@ -1,5 +1,8 @@
 package sdf;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Hello world!
  */
@@ -13,25 +16,51 @@ public final class App {
      */
     public static void main(String[] args) {
         
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run(){
-                for (int i = 0; i < 5; i ++) {
-                    System.out.println(Thread.currentThread().getName() + "\t Runnable ..." + i);
-                }
-            }
-        });
-        thread1.start();
+        // Thread thread1 = new Thread(new Runnable() {
+        //     @Override
+        //     public void run(){
+        //         for (int i = 0; i < 5; i ++) {
+        //             System.out.println(Thread.currentThread().getName() + "\t Runnable ..." + i);
+        //         }
+        //     }
+        // });
+        // thread1.start();
 
-        MyRunnableImplementation mRI = new MyRunnableImplementation();
-        //Need to put runnable inside thread to run
-        Thread thread2 = new Thread(mRI);
-        thread2.start();
+        MyRunnableImplementation mRI = new MyRunnableImplementation("Task 1"); //Assign names to distinguish threads
+        MyRunnableImplementation mRI2 = new MyRunnableImplementation("Task 2");
+        MyRunnableImplementation mRI3 = new MyRunnableImplementation("Task 3");
+        MyRunnableImplementation mRI4 = new MyRunnableImplementation("Task 4");
+        MyRunnableImplementation mRI5 = new MyRunnableImplementation("Task 5");
+        // //Need to put runnable inside thread to run
+        // Thread thread2 = new Thread(mRI);
+        // thread2.start();
 
-        Thread thread3 = new Thread(mRI);
-        thread3.start();
+        // Thread thread3 = new Thread(mRI);
+        // thread3.start();
 
+        //Instantiate the single thread executor service
+        // ExecutorService executorService = Executors.newSingleThreadExecutor();
+        // executorService.execute(mRI);
+        // executorService.execute(mRI2);
+        // executorService.shutdown();
 
-            
+        //Instantiate fixed thread pool executor service
+        // ExecutorService executorService = Executors.newFixedThreadPool(3); //3 working threads to process tasks
+        // // ExecutorService executorService2 = Executors.newFixedThreadPool(3);
+        // executorService.execute(mRI);
+        // executorService.execute(mRI2);
+        // executorService.execute(mRI3);
+        // executorService.execute(mRI4);
+        // executorService.execute(mRI5);
+        // executorService.shutdown();
+        
+         //Instantiate cache thread pool executor service
+         ExecutorService executorService = Executors.newCachedThreadPool();
+         executorService.execute(mRI);
+         executorService.execute(mRI2);
+         executorService.execute(mRI3);
+         executorService.execute(mRI4);
+         executorService.execute(mRI5);
+         executorService.shutdown();
     }
 }
