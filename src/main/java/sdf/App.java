@@ -62,5 +62,32 @@ public final class App {
          executorService.execute(mRI4);
          executorService.execute(mRI5);
          executorService.shutdown();
+
+         //Lambda expressions in action 
+         //Addition Runnable Interface
+         MyRunnableInterface<Integer> addOperation = (a, b) -> {
+            return a + b;
+         };
+
+         //Multiply Runnable Interface
+         MyRunnableInterface<Integer> multiplyOperation = (a, b) -> {
+            return a * b;
+         };
+
+         //Minus Runnable Interface
+         MyRunnableInterface<Integer> minusOperation = (a, b) -> {
+            return a - b;
+         };
+
+         //Concat String
+         MyRunnableInterface<String> concatString = (a, b) -> {
+            return a + b;
+         };
+
+         System.out.println("addOperation: " + addOperation.process(1, 1));
+         System.out.println("multiplyOperation: " + multiplyOperation.process(2, 5));
+         System.out.println("minusOperation: " + minusOperation.process(10, 2));
+         System.out.println("concat: " + concatString.process("Happy", " day!"));
+
     }
 }
